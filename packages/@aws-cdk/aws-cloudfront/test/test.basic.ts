@@ -594,7 +594,6 @@ export = {
             behaviors: [{ isDefaultBehavior: true }]
           }],
           viewerCertificate: ViewerCertificate.fromAcmCertificate(certificate, {
-            securityPolicy: SecurityPolicyProtocol.SSL_V3,
             sslMethod: SSLMethod.VIP,
             aliases: ['example.com', 'www.example.com']
           }),

@@ -801,9 +801,11 @@ export class CloudFrontWebDistribution extends cdk.Construct implements IDistrib
         }
       }
 
-      if (minimumProtocolVersion == null && sslSupportMethod === SSLMethod.VIP) {
+      if (minimumProtocolVersion == null && sslSupportMethod != null) {
+        const defaultMinimumProtocolVersion =
+          sslSupportMethod === SSLMethod.VIP ? SecurityPolicyProtocol.SSL_V3 : SecurityPolicyProtocol.TLS_V1_1_2016;
         Object.assign(distributionConfig.viewerCertificate, {
-          minimumProtocolVersion: SecurityPolicyProtocol.TLS_V1_1_2016
+          minimumProtocolVersion: defaultMinimumProtocolVersion
         });
       }
     } else {
